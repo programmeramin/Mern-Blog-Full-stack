@@ -1,3 +1,4 @@
+import errorHandler from "../middleware/errorHandler.js";
 import User from "../models/userModel.js"
 import bcrypt from "bcryptjs" 
 
@@ -8,13 +9,19 @@ import bcrypt from "bcryptjs"
    * @method POST
    */
 
-  export const signup = async (req, res) =>{
+  export const signup = async (req, res, next) =>{
     
     const {username, email, password} = req.body;
 
     // validation
     if(!username || !email || !password || username === "" || email === "" || password === ""){
-      return res.status(400).json({ message : "All fields are required"})
+     next(errorHandler(400, "All fields are required"));
+    }
+
+    // check if user already exists
+    const existUser = await User.findOne({email});
+    if(existUser){
+      return res.status(400).json({message : "User already exists"})
     }
 
     // hash password
@@ -31,7 +38,7 @@ import bcrypt from "bcryptjs"
       await newUser.save();
       return res.status(201).json({message : "User create successfully"})
     } catch (error) {
-      return res.status(500).json({message : error.message})
+      next(error)
     }
 
    }    

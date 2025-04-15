@@ -22,13 +22,13 @@ App.use(express.urlencoded({extended : false}));
 App.use("/api/auth", authRoute);
 App.use("/api/user", userRoute);
  
-
+  
 // error handler
 //App.use(errorHandler)
-
+ 
 // listen server
 App.listen(PORT, () => {
     MongoDBConnect();
     console.log(`Server is running on ${PORT}`.bgBlue.white);
     
-});   
+});    

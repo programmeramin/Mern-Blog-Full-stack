@@ -8,8 +8,8 @@ import SignUp from './pages/SignUp';
 import Dashboard from './pages/Dashboard';
 import Project from './pages/Project';
 import Header from './components/Header';
-import Footer from './components/Footer';
 import NotFound from './components/NotFound';
+import FooterComponent from './components/Footer';
 
 function App() {
   
@@ -27,7 +27,7 @@ function App() {
           <Route path='/projects' element={<Project/>}/>
           <Route path='/*' element={<NotFound/>}/>
         </Routes>
-        <Footer/>
+        <FooterComponent/>
       </BrowserRouter>
 
     </>

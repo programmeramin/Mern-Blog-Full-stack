@@ -9,6 +9,7 @@ import {
   FooterTitle,
 } from "flowbite-react";
 import { BsDribbble, BsFacebook, BsGithub, BsInstagram, BsTwitter } from "react-icons/bs";
+import { FaLinkedin } from "react-icons/fa";
 
 import React from 'react'
 import { Link } from "react-router-dom";
@@ -29,8 +30,8 @@ const FooterComponent = () => {
             <div>
               <FooterTitle title="about" />
               <FooterLinkGroup col>
-                <FooterLink href="#">Flowbite</FooterLink>
-                <FooterLink href="#">Tailwind CSS</FooterLink>
+                <FooterLink href="#">100 JS Projects</FooterLink>
+                <FooterLink href="#">Amin's Blog</FooterLink>
               </FooterLinkGroup>
             </div>
             <div>
@@ -53,14 +54,14 @@ const FooterComponent = () => {
         <div className="w-full sm:flex sm:items-center sm:justify-between">
           <FooterCopyright href="#" by="Amin's Blog" year={new Date().getFullYear()} />
           <div className="mt-4 flex space-x-6 sm:mt-0 sm:justify-center">
-            <FooterIcon href="#" icon={BsFacebook} />
-            <FooterIcon href="#" icon={BsInstagram} />
-            <FooterIcon href="#" icon={BsTwitter} />
-            <FooterIcon href="#" icon={BsGithub} />
-            <FooterIcon href="#" icon={BsDribbble} />
+            <FooterIcon href="https://www.facebook.com/programmeraminislam" icon={BsFacebook} />
+            <FooterIcon href="https://www.instagram.com/programmer_amin" icon={BsInstagram} />
+            <FooterIcon href="https://x.com/programmeramin_" icon={BsTwitter} />
+            <FooterIcon href="https://github.com/programmeramin" icon={BsGithub} />
+            <FooterIcon href="https://www.linkedin.com/in/programmeramin" icon={FaLinkedin} />
           </div>
         </div>
-      </div>
+      </div> 
     </Footer>
     </>
   )

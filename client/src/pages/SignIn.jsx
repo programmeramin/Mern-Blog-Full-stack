@@ -1,11 +1,13 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import { Spinner, Button, Alert, FloatingLabel, TextInput } from 'flowbite-react';
+import { signInStart, signInFailure, signInSuccess } from '../redux/user/userSlice';
+import { useDispatch, useSelector } from 'react-redux';
 
 const SignIn = () => {
   const [formData, setFormData] = useState({});
-  const [errorMessage, setErrorMessage] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const {loading, error : errorMessage} = useSelector((state) => state.user);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const handleChange = (e) =>{
    
@@ -16,12 +18,11 @@ const SignIn = () => {
        e.preventDefault();
 
        if(!formData.email || !formData.password){
-        return setErrorMessage("Please fill all fields");
+        return dispatch(signInFailure("Please fill all the fields"))
        }
 
        try {
-           setLoading(true);
-           setErrorMessage(null);   
+           dispatch(signInStart());   
         const res = await fetch("/api/auth/signin", {
           method : "POST",
           headers : {"Content-Type" : "application/json"},
@@ -30,16 +31,15 @@ const SignIn = () => {
         });
         const data = await res.json();
         if(data.success === false){
-          return setErrorMessage(data.message);
+          dispatch(signInFailure(data.message))
         }
-        setLoading(false);
         if(res.ok === true){
+          dispatch(signInSuccess(data))
           return navigate("/")
         }
         console.log(data)
        } catch (error) {
-       setErrorMessage(error.message)
-       setLoading(false)
+        dispatch(signInFailure(error.message))
        }   
 
   }
@@ -62,7 +62,7 @@ const SignIn = () => {
           This is a demo project. You can sign in and login your account.
         </p>
                  </div>
-                 {/** Right side */}
+                 {/** Right side **/}
                  <div className="flex-1">
                   <form onSubmit={handleSubmit} className='flex flex-col gap-5'>
                      <div className="">
@@ -89,7 +89,7 @@ const SignIn = () => {
                       <Link to="/signup" className='text-blue-500'>Sign Up</Link>
                     </div>
                     {errorMessage && (
-                      <Alert className='mt-5' color='failure' onDismiss={() => setErrorMessage(null)}>
+                      <Alert className='mt-5' color='failure' onDismiss={() =>dispatch(signInFailure())}>
                         {errorMessage}
                       </Alert>
                     )}

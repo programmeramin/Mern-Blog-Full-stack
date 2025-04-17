@@ -5,7 +5,7 @@ import MongoDBConnect from "./config/MongoDBConnect.js";
 import authRoute from "./routes/auth.route.js"
 import userRoute from "./routes/user.routes.js";
 //import  errorHandler  from "./middleware/errorHandler.js";
-
+  
 
 // Load env vars
 dotenv.config();

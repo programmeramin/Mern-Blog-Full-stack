@@ -59,7 +59,7 @@ const SignIn = () => {
           BLOG
         </Link>
         <p className='text-sm mt-5'>
-          This is a demo project. You can sign in and login your account.
+          This is a demo project. You can sign in and login access your account.
         </p>
                  </div>
                  {/** Right side **/}

@@ -22,6 +22,11 @@ const userSchema = new mongoose.Schema({
     trim : true,
    },
 
+   profilePicture : {
+    type : String,
+    default : "https://png.pngtree.com/png-clipart/20190924/original/pngtree-business-people-avatar-icon-user-profile-free-vector-png-image_4815126.jpg",
+   },
+
     role : {
         type :  String,
         enum : ["user", "admin"],

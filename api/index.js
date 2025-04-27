@@ -17,12 +17,11 @@ const App = express();
 //json parser
 App.use(express.json());
 App.use(express.urlencoded({extended : false}));
-
+   
 // route
 App.use("/api/auth", authRoute);
 App.use("/api/user", userRoute);
  
-  
 // error handler
 //App.use(errorHandler)
  
